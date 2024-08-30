@@ -1,0 +1,169 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNtYBAj/ZYjl69Whzh8edE/",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/suryatejaganji/NLP-2303A51L19-27/blob/main/NLP%20AS-01%20L19\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "source": [
+        "# Import necessary libraries\n",
+        "import nltk\n",
+        "from nltk.tokenize import word_tokenize, sent_tokenize\n",
+        "import pandas as pd\n",
+        "\n",
+        "# Download necessary NLTK data\n",
+        "nltk.download('punkt')\n",
+        "\n",
+        "# Create a sample dataset with text data\n",
+        "data = {\n",
+        "    'Text': [\n",
+        "            \"Hello there! How are you doing today? NLP is fascinating.\",\n",
+        "                    \"Python is a powerful programming language. It is widely used in data science.\",\n",
+        "                            \"Natural Language Processing involves several steps like tokenization, stemming, and lemmatization.\"\n",
+        "                                ]\n",
+        "                                }\n",
+        "\n",
+        "# Convert the dictionary into a pandas DataFrame\n",
+        "df = pd.DataFrame(data) # Fixed: Removed the unexpected indentation\n",
+        "\n",
+        "# Apply sentence segmentation\n",
+        "df['Sentences'] = df['Text'].apply(sent_tokenize)\n",
+        "\n",
+        "# Display the segmented sentences\n",
+        "print(\"Sentence Segmentation:\")\n",
+        "print(df[['Text', 'Sentences']].head())\n",
+        "\n",
+        "# Apply word segmentation\n",
+        "df['Words'] = df['Text'].apply(word_tokenize)\n",
+        "\n",
+        "# Display the segmented words\n",
+        "print(\"\\nWord Segmentation:\")\n",
+        "print(df[['Text', 'Words']].head())"
+      ],
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "PJXGtOznnIJb",
+        "outputId": "7943bbf8-1e06-4375-ecab-02218749ae51"
+      },
+      "execution_count": 6,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stderr",
+          "text": [
+            "[nltk_data] Downloading package punkt to /root/nltk_data...\n",
+            "[nltk_data]   Unzipping tokenizers/punkt.zip.\n"
+          ]
+        },
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sentence Segmentation:\n",
+            "                                                Text  \\\n",
+            "0  Hello there! How are you doing today? NLP is f...   \n",
+            "1  Python is a powerful programming language. It ...   \n",
+            "2  Natural Language Processing involves several s...   \n",
+            "\n",
+            "                                           Sentences  \n",
+            "0  [Hello there!, How are you doing today?, NLP i...  \n",
+            "1  [Python is a powerful programming language., I...  \n",
+            "2  [Natural Language Processing involves several ...  \n",
+            "\n",
+            "Word Segmentation:\n",
+            "                                                Text  \\\n",
+            "0  Hello there! How are you doing today? NLP is f...   \n",
+            "1  Python is a powerful programming language. It ...   \n",
+            "2  Natural Language Processing involves several s...   \n",
+            "\n",
+            "                                               Words  \n",
+            "0  [Hello, there, !, How, are, you, doing, today,...  \n",
+            "1  [Python, is, a, powerful, programming, languag...  \n",
+            "2  [Natural, Language, Processing, involves, seve...  \n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# New Section"
+      ],
+      "metadata": {
+        "id": "XSEdtUqqnmzx"
+      }
+    },
+    {
+      "source": [
+        "import pandas as pd\n",
+        "\n",
+        "# Define the original ambiguous text\n",
+        "original_text = \"The bank can guarantee deposits will eventually cover future tuition costs because it invests in adjustable-rate mortgage securities.\"\n",
+        "\n",
+        "# Function to clarify ambiguous text\n",
+        "def clarify_text(text):\n",
+        "    # Example clarification process\n",
+        "    # This is a simple rephrasing for clarity. More complex text processing can be applied if needed.\n",
+        "    clarified_text = (\"The bank guarantees that deposits will cover future tuition costs over time. \"\n",
+        "                      \"This assurance is based on the bank's investment in adjustable-rate mortgage securities.\")\n",
+        "    return clarified_text #Fixed: Removed the unexpected indentation.\n",
+        "\n",
+        "# Clarify the original text\n",
+        "clarified_text = clarify_text(original_text)\n",
+        "\n",
+        "# Print the original and clarified texts\n",
+        "print(\"Original Text:\")\n",
+        "print(original_text)\n",
+        "print(\"\\nClarified Text:\")\n",
+        "print(clarified_text)"
+      ],
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "KpVEP6FPngMj",
+        "outputId": "9d664bea-8df2-41dd-9493-0c2aee592ad4"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original Text:\n",
+            "The bank can guarantee deposits will eventually cover future tuition costs because it invests in adjustable-rate mortgage securities.\n",
+            "\n",
+            "Clarified Text:\n",
+            "The bank guarantees that deposits will cover future tuition costs over time. This assurance is based on the bank's investment in adjustable-rate mortgage securities.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
